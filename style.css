@@ -10,20 +10,6 @@ body {
     min-height: 100vh;
     background-color: whitesmoke;
     font-family: 'Inter', sans-serif;
-    line-height: 1.6;
-}
-
-.main {
-    width: 80%;
-    max-width: 1200px;
-    margin: 50px auto;
-}
-
-.featured-article img, .article img {
-    width: 100%;
-    max-height: 300px;
-    object-fit: cover;
-    margin-bottom: 15px;
 }
 /* Sticky Navbar */
 nav {
@@ -34,7 +20,8 @@ nav {
     color: rgb(51, 51, 51);
     position: sticky;
     top: 0;
-    z-index: 100;height: 60px;
+    z-index: 100;
+    height: 60px;
     background-color: whitesmoke;
 }
 .nav-left h1 {
@@ -48,67 +35,62 @@ nav {
     margin-left: 20px;
     color: hsl(0, 0%, 13%);
     transition: color 0.3s;
+    text-decoration: none;
 }
     .nav-right a:hover {
         color:hsl(0, 0%, 25%)
     }
-/* Featured Article Styles */
-.featured-article {
-    margin-bottom: 15px;
+
+    /* Main Content */
+    .grid {
+display: grid;
+grid-template-columns: repeat(6, 1fr);
+grid-template-rows: repeat(4, 180px);
+grid-gap: 5px;
+margin: 20px auto;
+padding: 20px 5%;
+max-width: 1600px;
 }
 
-    .featured-article h1 {
-        font-size: 2.5rem;
-        margin: 15px 0;
-    }
+.item1 { grid-area: 1 / 1 / 4 / 2; }
+.item2 { grid-area: 4 / 1 / 5 / 3; }
+.item3 { grid-area: 3 / 2 / 4 / 3; }
+.item4 { grid-area: 1 / 2 / 3 / 4; }
+.item5 { grid-area: 3 / 3 / 5 / 4; }
+.item6 { grid-area: 1 / 4 / 3 / 6; }
+.item7 { grid-area: 1 / 6 / 4 / 7; }
+.item8 { grid-area: 3 / 5 / 4 / 6; }
+.item9 { grid-area: 3 / 4 / 5 / 5; }
+.item10 { grid-area: 4 / 5 / 5 / 7; }
 
-    .featured-article p {
-        font-size: 1.2rem;
-        color: rgb(85, 85, 85);
-        margin-bottom: 20px;
-    }
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    cursor: pointer;
+}
 
-
-/* Smaller Articles Styles */
-
-.smaller-articles {
+/* MODAL */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+    z-index: 101;
 }
 
-.article {
-    flex: 1;
-    margin: 0 15px;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    border-radius: 5px;
+.modal img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: cover;
 }
-    .article:first-child {
-        margin-left: 0;
-    }
-    .article:last-child {
-        margin-right: 0;
-    }
-    .article h2 {
-        font-size: 1.8rem;
-        margin: 15px 0;
-    }
-    .article p {
-        font-size: 1rem;
-        color: rgb(85, 85, 85);
-    }
-.link3a {
-    position: relative;
-    top: 7.6%;
-    transition: color 0.3s;
-}
-a {
-    text-decoration: none;
-    color: hsl(211,100%,50%);
-}
-    a:hover {
-    color: hsl(211,100%,35%);
-    }
+
 /* Footer */
 footer {
     color: rgb(51, 51, 51);
@@ -136,29 +118,32 @@ footer {
 
 
 /* Tablet */
-@media screen and (max-width: 1025px) {
+@media (max-width: 1025px) {
     .nav-left h1 {
         font-size: 1.5rem !important;
     }
-    .main {
-        width: 90%;
+
+    .grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(10, minmax(150px, auto));
+        padding: 5px;
+        margin: auto;
     }
-    .featured-article h1 {
-        font-size: 2.2rem;
-    }
-    .article h2 {
-        font-size: 1.7rem;
-    }
-    .smaller-articles {
-        flex-direction: column;
-    }
-    .article {
-        margin-bottom: 20px;
+
+       .grid > div {
+        grid-area: auto;
+       }
+}
+/* Target horizontal orientation and typical landscape widths */
+
+@media (orientation: landscape) and (max-width: 1024px) {
+    img {
+        max-height: 90vh;
     }
 }
 
 /* Mobile */
-@media screen and (max-width: 600px) {
+@media (max-width: 600px) {
     .main {
         width: 95%;
         margin: 30px auto;
@@ -181,20 +166,5 @@ footer {
         margin-left: unset;
         margin-right: 20px;
         margin-bottom: 5px;
-    }
-    .featured-article h1 {
-        font-size: 1.8rem;
-    }
-    .featured-article p {
-        font-size: 1rem;
-    }
-    .featured-article img, .article img {
-        max-height: 200px;
-    }
-    .article {
-        margin: 10px 0;
-    }
-    .article h2 {
-        font-size: 1.5rem;
     }
 }
