@@ -1,6 +1,6 @@
 // Allow for selection of image to triger modal view
 
-const items = document.querySelectorAll('.grid > div')
+const items = document.querySelectorAll('.item')
 
 items.forEach(item => {
     const img = item.querySelector('img');
@@ -18,11 +18,18 @@ items.forEach(item => {
         modal.appendChild(imgElement);
         // add the modal to the body
         document.body.appendChild(modal);
+        // Trigger the reveal animation
+        setTimeout(() => {
+                imgElement.classList.add('reveal');
+           }, 10);
         // Disable scrolling
         document.body.style.overflow = 'hidden';
         // add event listener to close the modal when clicked
         modal.addEventListener('click', () => {
-            document.body.removeChild(modal);
+            imgElement.classList.remove('reveal');
+            setTimeout(() => {
+                modal.remove();
+            }, 500); // Match the CSS transition duration (0.5s)
             // Re-enable scrolling
             document.body.style.overflow = '';
         });
